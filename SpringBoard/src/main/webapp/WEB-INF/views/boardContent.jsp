@@ -14,7 +14,7 @@
 </head>
 <body>
 <%
-   ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+   Board vo = (Board)request.getAttribute("vo");
 %>
 <div class="container">
   <h2>Spring WEB MVC 게시판</h2>
@@ -24,26 +24,32 @@
     
 		<table class="table table-bordered table-hover">
 		    <tr>
-		      <th>번호</th>
-		      <th>제목</th>
-		      <th>작성자</th>
-		      <th>작성일</th>
-		      <th>조회수</th>
+		    	<td>번호</td>
+		    	<td><%=vo.getIdx() %></td>
 		    </tr>
-			<%for(Board vo : list) {%>
-			<tr>
-				<td><%=vo.getIdx() %></td>
-				<td><a href="/myapp/boardContent.do?idx=<%=vo.getIdx() %>"><%=vo.getTitle() %></a></td>
-				<td><%=vo.getWriter() %></td>
-				<td><%=vo.getIndate() %></td>
-				<td><%=vo.getCount() %></td>
-			</tr>
-			<%} %>
-			<tr>
-				<td colspan="5" style="text-align: right;">
-					<button class="btn btn-success btn-sm" onclick="location.href='/myapp/boardForm.do'">글쓰기</button>
-				</td>
-			</tr>
+		    <tr>
+		    	<td>제목</td>
+		    	<td><%=vo.getTitle() %></td>
+		    </tr>
+		    <tr>
+		    	<td>내용</td>
+		    	<td><%=vo.getContent() %></td>
+		    </tr>
+		    <tr>
+		    	<td>작성자</td>
+		    	<td><%=vo.getWriter() %></td>
+		    </tr>
+		    <tr>
+		    	<td>작성일</td>
+		    	<td><%=vo.getIndate() %></td>
+		    </tr>
+		    <tr>
+		    	<td colspan="2" align="center">
+		    		<button class="btn btn-info btn-sm">수정</button>
+		    		<button class="btn btn-warning btn-sm" onclick="location.href='/myapp/boardDelete.do/<%=vo.getIdx()%>'">삭제</button>
+		    		<button class="btn btn-success btn-sm" onclick="location.href='/myapp/boardList.do'">리스트</button>
+		    	</td>
+		    </tr>
 		</table>
 
 	</div>
