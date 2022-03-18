@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.smhrd.domain.Board;
@@ -60,15 +61,27 @@ public class BoardController {
 		return "boardContent";
 	}// end of boardContent
 	
-	//@@PathVariable : url에서 구분자에 들어오는 값을 처리할 때 사용
+	//@PathVariable : url에서 구분자에 들어오는 값을 처리할 때 사용
 	@GetMapping("/boardDelete.do/{idx}")
 	public String boardDelete(@PathVariable int idx) {
 		mapper.boardDelete(idx);
 		return "redirect:/boardList.do";
+	} // end of boardDelete
+	
+	@RequestMapping(value="/boardUpdate.do/{idx}", method=RequestMethod.GET)
+	public String boardUpdate(@PathVariable int idx, Model model) {
+		
+		Board vo = mapper.boardContent(idx);
+		model.addAttribute("vo", vo);
+		
+		return "boardUpdate";
 	}
 	
-	
-	
+	@RequestMapping(value="/boardUpdate.do", method=RequestMethod.POST)
+	public String boardUpdatePost(Board vo) {
+		mapper.boardUpdate(vo);
+		return "redirect:/boardList.do";
+	}
 	
 	
 	

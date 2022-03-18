@@ -10,7 +10,11 @@
 		insert into springboard(idx,title,content,writer) values(sboard_seq.nextval, #{title}, #{content}, #{writer})
 	</insert>
 	
-	<select id="boardContent" resultType="kr.smhrd.domain.Board" parameterType="int">
-		select * from springboard where idx=#{idx}
+	<select id="boardContent" parameterType="int" resultType="kr.smhrd.domain.Board">
+		select * from springboard where idx = #{idx}
 	</select>
+	
+	<update id="boardUpdate" parameterType="kr.smhrd.domain.Board">
+		update springboard set title = #{title}, content = #{content} where idx = #{idx}
+	</update>
 </mapper>
