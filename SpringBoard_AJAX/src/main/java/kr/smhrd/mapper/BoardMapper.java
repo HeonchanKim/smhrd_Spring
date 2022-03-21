@@ -3,6 +3,7 @@ package kr.smhrd.mapper;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Update;
 
 import kr.smhrd.domain.Board;
 
@@ -23,4 +24,8 @@ public interface BoardMapper {
 	
 	//특정 게시물 번호를 가진 게시물 수정
 	public void boardUpdate(Board vo);
+	
+	
+	//@Update("update springboard set content=#{content} where idx=#{idx}")
+	public void boardContentUpdate(Board vo);
 }

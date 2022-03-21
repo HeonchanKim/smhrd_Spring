@@ -47,8 +47,8 @@ public class BoardController {
 	//sql작성 - xml, annotation
 	//반환 데이터 x
 	@RequestMapping("/boardContentUpdate.do")
-	public @ResponseBody void boardContentUpdate() {
-		
+	public @ResponseBody void boardContentUpdate(Board vo) {
+		mapper.boardContentUpdate(vo);
 	}
 	
 	
