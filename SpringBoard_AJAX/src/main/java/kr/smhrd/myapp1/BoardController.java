@@ -51,5 +51,19 @@ public class BoardController {
 		mapper.boardContentUpdate(vo);
 	}
 	
+	@RequestMapping("/boardInsert.do")
+	public @ResponseBody void boardInsert(Board vo) {
+		mapper.boardInsert(vo);
+	}
+	
+	@RequestMapping("/boardTWUpdate.do")
+	public @ResponseBody void boardTWUpdate(Board vo) {
+		mapper.boardTWUpdate(vo);
+	}
+	
+	
+	
+	
+	
 	
 }// end of class

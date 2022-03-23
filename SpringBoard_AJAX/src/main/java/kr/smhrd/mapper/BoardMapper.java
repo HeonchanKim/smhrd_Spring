@@ -22,10 +22,15 @@ public interface BoardMapper {
 	@Delete("delete from springboard where idx=#{idx}")
 	public void boardDelete(int idx);
 	
-	//특정 게시물 번호를 가진 게시물 수정
+	//특정 게시물 번호를 가진 게시물 수정(내용, 타이틀)
 	public void boardUpdate(Board vo);
 	
-	
+	//특정 게시물 번호를 가진 게시물 수정(내용)
 	//@Update("update springboard set content=#{content} where idx=#{idx}")
 	public void boardContentUpdate(Board vo);
+	
+	//특정 게시물 번호를 가진 게시물 수정(타이틀, 작성자)
+	//@Update("update springboard set title=#{title},writer=#{writer} where idx=#{idx}")
+	public void boardTWUpdate(Board vo);
+	
 }

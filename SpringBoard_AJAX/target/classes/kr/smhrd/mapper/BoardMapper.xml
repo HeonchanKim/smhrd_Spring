@@ -21,4 +21,8 @@
 	<update id="boardContentUpdate" parameterType="kr.smhrd.domain.Board">
 		update springboard set content=#{content} where idx=#{idx}
 	</update>
+	
+	<update id="boardTWUpdate" parameterType="kr.smhrd.domain.Board">
+		update springboard set title=#{title},writer=#{writer} where idx=#{idx}
+	</update>
 </mapper>
