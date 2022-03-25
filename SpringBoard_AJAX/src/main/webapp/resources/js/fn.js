@@ -1,9 +1,17 @@
 /**
  * 
  */
+
+function getContextPath(){
+	var hostIndex = location.href.indexOf(location.host)+location.host.length;
+	var contextPath = location.href.substring(hostIndex,location.href.indexOf("/",hostIndex+1));
+	return contextPath;
+}
+ 
+ 
 function loadList() {
 	$.ajax({
-		url : "/myapp1/boardList.do",
+		url : getContextPath()+"/boardList.do",
 		type : "get",
 		dataType : "json",
 		success : htmlView,
@@ -11,49 +19,6 @@ function loadList() {
 			alert("error");
 		}
 	});
-}
-
-function htmlView(data){
-	var result = "<table class='table table-bordered table-hover'>";
-	result += "<tr>";
-	result += "<td>번호</td>";
-	result += "<td>제목</td>";
-	result += "<td>작성자</td>";
-	result += "<td>작성일</td>";
-	result += "<td>조회수</td>"; 
-	result += "<td>수정하기</td>"; 
-	result += "<td>삭제하기</td>"; 
-	result += "</tr>";
-	
-	//반복문
-	$.each(data,(index,vo)=>{
-		result += "<tr>" 
-		result += "<td>"+vo.idx+"</td>";
-		result += "<td id='t"+vo.idx+"'><a href='javascript:contentView("+vo.idx+")'>"+vo.title+"</a></td>";
-		result += "<td id='w"+vo.idx+"'>"+vo.writer+"</td>";
-		result += "<td>"+vo.indate+"</td>";
-		result += "<td>"+vo.count+"</td>";
-		result += "<td id='u"+vo.idx+"'><button class='btn btn-success btn-sm' onclick='goUpdate("+vo.idx+")'>수정</button></td>";
-		result += "<td><button class='btn btn-warning btn-sm' onclick='goDelete("+vo.idx+")'>삭제</button></td>";
-		result += "</tr>"; 
-		result += "<tr style='display:none' id='cv"+vo.idx+"'>";
-		result += "<td>내용</td>" ;
-		result += "<td colspan='4'>"; 		
-		result += "<textarea id='c"+vo.idx+"' rows='6' class='form-control'>"+vo.content+"</textarea>";		
-		result += "<br>";
-		result += "<button class='btn btn-success btn-sm' onclick='updateCt("+vo.idx+")'>수정</button>&nbsp"; 
-		result += "<button class='btn btn-warning btn-sm' onclick='closeCt("+vo.idx+")'>닫기</button>"; 
-		result += "</td>"; 
-		result += "</tr>";
-	});	
-	result += "<tr>";
-	result += "<td colspan='7' align='right'>";
-	result += "<button class='btn btn-primary btn-sm' onclick='goView()'>글쓰기</button>";	
-	result += "</td>";
-	result += "</tr>";
-	result += "</table>";
-	
-	$("#list").html(result);
 }
 
 function goDelete(idx){
@@ -153,3 +118,8 @@ function contentView(idx){
 		$("#cv"+idx).css("display", "none");
 	}
 }
+
+function logout(){
+	location.href = getContextPath()+"/logout.do"
+}
+

@@ -7,7 +7,7 @@
 	
 	
 	<insert id="boardInsert" parameterType="kr.smhrd.domain.Board">
-		insert into springboard(idx,title,content,writer) values(sboard_seq.nextval, #{title}, #{content}, #{writer})
+		insert into springboard(idx,title,content,writer,memId) values(sboard_seq.nextval, #{title}, #{content}, #{writer}, #{memId})
 	</insert>
 	
 	<select id="boardContent" parameterType="int" resultType="kr.smhrd.domain.Board">

@@ -14,4 +14,6 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Update"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="kr.smhrd.service.BoardService"/>
+    <fullyQualifiedTypeName name="kr.smhrd.domain.Member"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
 </qualifiedTypeNameHistroy>
