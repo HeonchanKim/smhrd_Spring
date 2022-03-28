@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
     <div class="panel-heading">
     
 		<c:if test="${empty mvo}">
-			<form class="form-inline" action="/myapp1/login.do" method="post">
+			<form class="form-inline" action="${cpath}/login.do" method="post">
 			  <div class="form-group">
 			    <label for="memId">ID : </label>
 			    <input type="text" class="form-control" id="memId" name="memId">
@@ -125,7 +126,11 @@ function htmlView(data){
 		result += "<td colspan='4'>"; 		
 		result += "<textarea id='c"+vo.idx+"' rows='6' class='form-control'>"+vo.content+"</textarea>";		
 		result += "<br>";
-		result += "<button class='btn btn-success btn-sm' onclick='updateCt("+vo.idx+")'>수정</button>&nbsp"; 
+		if(vo.memId == "${mvo.memId}"){
+			result += "<button class='btn btn-success btn-sm' onclick='updateCt("+vo.idx+")'>수정</button>&nbsp";
+		}else{
+			result += "<button disabled class='btn btn-success btn-sm' onclick='updateCt("+vo.idx+")'>수정</button>&nbsp";			
+		}
 		result += "<button class='btn btn-warning btn-sm' onclick='closeCt("+vo.idx+")'>닫기</button>"; 
 		result += "</td>"; 
 		result += "</tr>";
