@@ -10,4 +10,6 @@ public class HController {
 	public String home() {
 		return "main";
 	}
+	
+	
 }

@@ -20,4 +20,6 @@ insert into springboard(idx, title, content, writer) values (sboard_seq.nextval,
 
 select * from springboard;
 
+select * from WEB_MEMBER;
+
 
